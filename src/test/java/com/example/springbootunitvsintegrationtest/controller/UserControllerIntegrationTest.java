@@ -64,4 +64,45 @@ class UserControllerIntegrationTest {
         assertEquals(1, savedUser.getId());
         assertEquals(200, mvcResult.getResponse().getStatus());
     }
+    @Test
+    public void user_updated_integration() throws Exception {
+
+        int id=1;
+
+        String firstName = "Muharrem";
+        String lastName = "Koc";
+
+        UserDTO userDTO = UserDTO.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .build();
+
+        User user = User.builder()
+                .id(id).build();
+
+        userDTO.setFirstName("Mahmuteeerrr");
+
+        user.setFirstName(userDTO.getFirstName());
+
+        Mockito.when(userController.updateUser(id,userDTO)).thenReturn(user);
+
+
+
+
+        MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders
+                        .put("/api/tests/user/{id}",id)
+                        .contentType(MediaType.APPLICATION_JSON)
+
+                        .content(objectMapper.writeValueAsString(userDTO)))
+                .andReturn();
+
+        User savedUser =
+                objectMapper.readValue(mvcResult.getResponse().getContentAsString(), User.class);
+
+        assertNotNull(savedUser);
+        assertNotNull(savedUser.getId());
+        assertEquals(1, savedUser.getId());
+        assertEquals(201, mvcResult.getResponse().getStatus());
+    }
+
 }

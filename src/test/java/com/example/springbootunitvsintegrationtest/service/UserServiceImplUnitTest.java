@@ -1,7 +1,9 @@
 package com.example.springbootunitvsintegrationtest.service;
 
 import com.example.springbootunitvsintegrationtest.dto.UserDTO;
+import com.example.springbootunitvsintegrationtest.mapper.UserMapper;
 import com.example.springbootunitvsintegrationtest.model.User;
+import com.example.springbootunitvsintegrationtest.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,6 +15,8 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -21,6 +25,9 @@ class UserServiceImplUnitTest {
      @MockBean
      UserService userService;
 
+
+     @MockBean
+     UserMapper userMapper;
      @Test
      public void user_saved_and_is_return_true(){
 
@@ -79,6 +86,26 @@ class UserServiceImplUnitTest {
 
      }
 
+     @Test
+     public void updateCustomer_doAnswer_when() {
+
+          int id=1;
+
+          UserDTO userDTO = UserDTO.builder()
+                  .firstName("Muharrem")
+                  .lastName("Koc")
+                  .build();
+
+          User user= User.builder()
+                  .id(id)
+                  .firstName("Mahmut").build();
+          Mockito.when(userService.updateUser(id,userDTO)).thenReturn(user);
+          userDTO.setFirstName("Mahmuterrr");
+
+          User updatedUser=userService.updateUser(id,userDTO);
+
+          assertNotNull(updatedUser.getId());
+     }
 
 
 }
