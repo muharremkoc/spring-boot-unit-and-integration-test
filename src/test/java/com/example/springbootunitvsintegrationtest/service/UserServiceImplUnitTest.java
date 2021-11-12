@@ -87,7 +87,7 @@ class UserServiceImplUnitTest {
      }
 
      @Test
-     public void updateCustomer_doAnswer_when() {
+     public void user_updated_and_is_return_true() {
 
           int id=1;
 
@@ -106,6 +106,7 @@ class UserServiceImplUnitTest {
 
           assertNotNull(updatedUser.getId());
      }
+
 
 
 }
