@@ -3,7 +3,7 @@ package com.example.springbootunitvsintegrationtest.service;
 import com.example.springbootunitvsintegrationtest.dto.UserDTO;
 import com.example.springbootunitvsintegrationtest.mapper.UserMapper;
 import com.example.springbootunitvsintegrationtest.model.User;
-import com.example.springbootunitvsintegrationtest.repository.UserRepository;
+import com.example.springbootunitvsintegrationtest.service.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,7 +16,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doAnswer;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -107,6 +106,20 @@ class UserServiceImplUnitTest {
           assertNotNull(updatedUser.getId());
      }
 
+     public void user_deleted_and_is_return_true() {
 
+          int id=1;
+
+          UserDTO userDTO = UserDTO.builder()
+                  .firstName("Muharrem")
+                  .lastName("Koc")
+                  .build();
+
+          User user= User.builder()
+                  .id(id)
+                  .firstName("Mahmut").build();
+
+
+     }
 
 }

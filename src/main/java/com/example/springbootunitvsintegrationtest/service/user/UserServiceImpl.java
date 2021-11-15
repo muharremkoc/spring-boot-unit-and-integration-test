@@ -1,4 +1,4 @@
-package com.example.springbootunitvsintegrationtest.service;
+package com.example.springbootunitvsintegrationtest.service.user;
 
 import com.example.springbootunitvsintegrationtest.dto.UserDTO;
 import com.example.springbootunitvsintegrationtest.mapper.UserMapper;

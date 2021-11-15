@@ -2,7 +2,7 @@ package com.example.springbootunitvsintegrationtest.controller;
 
 import com.example.springbootunitvsintegrationtest.dto.UserDTO;
 import com.example.springbootunitvsintegrationtest.model.User;
-import com.example.springbootunitvsintegrationtest.service.UserService;
+import com.example.springbootunitvsintegrationtest.service.user.UserService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
